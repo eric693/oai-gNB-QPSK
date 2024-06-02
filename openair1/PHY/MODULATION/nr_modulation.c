@@ -160,14 +160,17 @@ void nr_modulation(uint32_t *in,
 #endif
 
   case 4:
+    LOG_I(PHY, "Entering 16QAM modulation\n");
     out64 = (int64_t*) out;
     for (i=0; i<length/8; i++)
+      // LOG_I(PHY, "16QAM processing byte index %d", i);
       out64[i] = nr_16qam_byte_mod_table[in_bytes[i]];
     // the bits that are left out
     i = i*8/4;
     while (i<length/4) {
       const int idx = ((in_bytes[(i * 4) / 8] >> ((i * 4) & 0x7)) & mask);
       out32[i] = nr_16qam_mod_table[idx];
+      // LOG_I(PHY, "16QAM processing remaining bits index %d, idx %d", i, idx);
       i++;
     }
     return;

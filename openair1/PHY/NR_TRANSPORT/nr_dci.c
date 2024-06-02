@@ -254,7 +254,7 @@ void nr_generate_dci(PHY_VARS_gNB *gNB,
           printf("%u", (encoder_output[idiv32] >> (31 - imod32)) & 1);
       }
       printf("\n");
-      printf("DCI seq number = %d, target DCI = %d, target bit sequence = 0x%x, encoded_length = %d\n", tx_dci_seq_no, target_dci, bitSequence, encoded_length);
+      printf("DCI seq number = %d, target bit sequence = 0x%x, encoded_length = %d\n", tx_dci_seq_no, bitSequence, encoded_length);
       // usleep(500000);
       tx_dci_seq_no += 1;
     // }
@@ -389,4 +389,3 @@ void nr_generate_dci_top(processingData_L1tx_t *msgTx,
     nr_generate_dci(msgTx->gNB,&msgTx->pdcch_pdu[i].pdcch_pdu_rel15,txdataF,amp,frame_parms,slot);
 
 }
-
